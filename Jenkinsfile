@@ -20,7 +20,8 @@ pipeline {
                 script{ // Groovy Script
                 // def packageJson = readJSON file: 'package.json'
                 // appVersion = packageJson.version
-                echo "application version: $appVersion"
+                // echo "application version: $appVersion"
+                echo "Application version: ${params.appVersion}"
                 }
             }
         }
