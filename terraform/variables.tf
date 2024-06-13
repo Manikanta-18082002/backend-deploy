@@ -19,7 +19,7 @@ variable "zone_name" {
   default = "dawsmani.site"
 }
 
-variable "app_version" {
+variable "app_version" { # Should Mandatory pass version
   
   
 }

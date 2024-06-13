@@ -25,23 +25,23 @@ pipeline {
                 }
             }
         }
-        // stage('Init'){
-        //     steps{
-        //        sh """
-        //         cd terraform
-        //         terraform init
-        //        """
-        //     } // Now we are not in terraform folder? -- After stage comes into root folder (backend-deploy)
-        // }
-        // stage('Plan'){
-        //     steps{ // Why cd again -- by default we are in root folder
-        //        sh """
-        //         pwd
-        //         cd terraform 
-        //         terraform plan -var="app_version=${params.appVersion}"
-        //        """
-        //     }
-        // }
+        stage('Init'){ //
+            steps{
+               sh """
+                cd terraform
+                terraform init
+               """
+            } // Now we are not in terraform folder? -- After stage done it comes into root folder (backend-deploy)
+        }
+        stage('Plan'){ 
+            steps{ // Why cd again -- by default we are in root folder
+               sh """
+                pwd
+                cd terraform 
+                terraform plan -var="app_version=${params.appVersion}"  
+               """
+            } // Sending appVersion to terraform that will create instance
+        }
         // stage('Deploy'){ 
         //     steps{
         //        sh """
