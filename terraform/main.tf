@@ -39,7 +39,7 @@ resource "null_resource" "backend" { # 2) Configuring the Instance using Ansible
     provisioner "remote-exec" { # To run the Above file we use this remote exec
         inline = [
             "chmod +x /tmp/${var.common_tags.Component}.sh", # File: backend.sh (Open in putty to check file is copied?)
-            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment}"
+            "sudo sh /tmp/${var.common_tags.Component}.sh ${var.common_tags.Component} ${var.environment} ${var.app_version}" # These variables Goes to backend.sh
         ] # Running  .sh file (Given execution permissoins)
     } 
 }

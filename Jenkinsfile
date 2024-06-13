@@ -25,7 +25,7 @@ pipeline {
                 }
             }
         }
-        stage('Init'){ //
+        stage('Init'){ //init is mandatory bcz we are deleting entire BUILD Folder
             steps{
                sh """
                 cd terraform
@@ -42,14 +42,14 @@ pipeline {
                """
             } // Sending appVersion to terraform that will create instance
         }
-        // stage('Deploy'){ 
-        //     steps{
-        //        sh """
-        //         cd terraform
-        //         terraform Deploy
-        //        """
-        //     }
-        // }
+        stage('Deploy'){ 
+            steps{
+               sh """
+                cd terraform
+                terraform apply -auto-approve
+               """
+            }
+        }
     }
     post {  //This will catch the event and send Alerts to Mail/Slack
         always { 
