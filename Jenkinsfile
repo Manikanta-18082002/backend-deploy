@@ -18,12 +18,37 @@ pipeline {
         stage ('print the version'){
             steps{ // Variable can be accessed with in that stage only
                 script{ // Groovy Script
-                def packageJson = readJSON file: 'package.json'
-                appVersion = packageJson.version
+                // def packageJson = readJSON file: 'package.json'
+                // appVersion = packageJson.version
                 echo "application version: $appVersion"
                 }
             }
         }
+        // stage('Init'){
+        //     steps{
+        //        sh """
+        //         cd terraform
+        //         terraform init
+        //        """
+        //     } // Now we are not in terraform folder? -- After stage comes into root folder (backend-deploy)
+        // }
+        // stage('Plan'){
+        //     steps{ // Why cd again -- by default we are in root folder
+        //        sh """
+        //         pwd
+        //         cd terraform 
+        //         terraform plan -var="app_version=${params.appVersion}"
+        //        """
+        //     }
+        // }
+        // stage('Deploy'){ 
+        //     steps{
+        //        sh """
+        //         cd terraform
+        //         terraform Deploy
+        //        """
+        //     }
+        // }
     }
     post {  //This will catch the event and send Alerts to Mail/Slack
         always { 
